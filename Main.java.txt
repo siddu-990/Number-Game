@@ -1,0 +1,117 @@
+import java.util.*;
+class Number_Game
+{
+    public int random_num;
+    public int score=100;
+    public int input_num;
+    Number_Game()
+    {
+    Random rand=new Random();
+    this.random_num=rand.nextInt(100);
+    }
+    void userInput()
+    {
+        Scanner sc=new Scanner(System.in);
+        System.out.print("Enter any number between 1 and 100 : ");
+        input_num=sc.nextInt();
+        isCorrect(input_num);
+    }
+    boolean isCorrect(int n)
+    {
+        if(n==random_num)
+        {
+            System.out.println("Wow you guessed it right! and your score is"+" "+score+" "+"out of 100 because you guessed in"+" "+(100-score)/10+" "+"attempt | attempts");
+            System.out.println();
+            System.out.println();
+            System.out.print("Do you want to play again , answer in 'yes' or 'no' ");
+            System.out.println();
+            Scanner sc=new Scanner(System.in);
+            String ans=sc.nextLine();
+            if(ans.equals("yes")||ans.equals("YES"))
+            {
+                score=100;
+                userInput();
+            }
+            return true;
+        }
+
+            score=score-10;
+            if(score==0)
+            {
+                System.out.println("You have reached maximum limit of guesses i.e '10' .Better luck next time");
+                System.out.println();
+                System.out.println();
+                System.out.print("Do you want to play again , answer in 'yes' or 'no' ");
+                System.out.println();
+                Scanner sc=new Scanner(System.in);
+                String ans=sc.nextLine();
+                if(ans.equals("yes")||ans.equals("YES"))
+                {
+                score=100;
+                userInput();
+                }
+                return true;
+            }
+            if((random_num < input_num)&&(Math.abs(random_num-input_num) > 20))
+            {
+                System.out.println("Your guessed number is too high");
+                userInput();
+            }
+            else if((random_num < input_num)&&(Math.abs(random_num-input_num) <= 20)&&(Math.abs(random_num-input_num) > 10))
+            {
+                System.out.println("Your guessed number is high and the Absolute difference is below 21 and above 10");
+                userInput();
+            }
+            else if((random_num < input_num)&&(Math.abs(random_num-input_num) <= 10)&&(Math.abs(random_num-input_num) > 5))
+            {
+                System.out.println("Your guessed number is high and the Absolute difference is below 11 and above 5");
+                userInput();
+            }
+            else if((random_num < input_num)&&(Math.abs(random_num-input_num) <= 5)&&(Math.abs(random_num-input_num)>2))
+            {
+                System.out.println("You guesssed it little high the Absolute difference is just below 6 and above 2");
+                userInput();
+            }
+            else if((random_num < input_num)&&(Math.abs(random_num-input_num) <= 2))
+            {
+                System.out.println("You guesssed it little high the Absolute difference is just below 3");
+                userInput();
+            }
+            else if((random_num > input_num)&&(Math.abs(random_num-input_num )> 20))
+            {
+               System.out.println("Your guessed number is too low"); 
+               userInput();
+            }
+            else if((random_num > input_num)&&(Math.abs(random_num-input_num) <= 20)&&(Math.abs(random_num-input_num) > 10))
+            {
+                System.out.println("Your guessed number is low and the Absolute difference is below 21 and above 10");
+                userInput();
+            }
+            else if((random_num > input_num)&&(Math.abs(random_num-input_num) <= 10)&&(Math.abs(random_num-input_num) > 5))
+            {
+                System.out.println("Your guessed number is low and the Absolute difference is below 11 and above 5");
+                userInput();
+            }
+            else if((random_num > input_num)&&(Math.abs(random_num-input_num) <= 5)&&(Math.abs(random_num-input_num)>2))
+            {
+                System.out.println("You guesssed it little low the Absolute difference is just below 6 and above 2");
+                userInput();
+            }
+            else if((random_num > input_num)&&(Math.abs(random_num-input_num) <= 2))
+            {
+                System.out.println("You guesssed it little low the Absolute difference is just below 3");
+                userInput();
+            }
+            return false;
+    }
+    
+	
+}
+public class Main
+{
+    public static void main(String[] args) {
+        
+		Number_Game a=new Number_Game();
+		a.userInput();
+	}
+}
